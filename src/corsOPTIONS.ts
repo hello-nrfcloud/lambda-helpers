@@ -1,12 +1,15 @@
-import lambda from 'aws-lambda'
-import { type MiddlewareObj } from '@middy/core'
+import type {
+	APIGatewayProxyEventV2,
+	APIGatewayProxyStructuredResultV2,
+} from 'aws-lambda'
+import type { MiddlewareObj } from '@middy/core'
 import { corsHeaders } from './corsHeaders.js'
 
 export const corsOPTIONS = (
 	...allowedMethods: string[]
 ): MiddlewareObj<
-	lambda.APIGatewayProxyEventV2,
-	lambda.APIGatewayProxyStructuredResultV2
+	APIGatewayProxyEventV2,
+	APIGatewayProxyStructuredResultV2
 > => ({
 	before: async (req) => {
 		if (req.event.requestContext.http.method === 'OPTIONS') {
