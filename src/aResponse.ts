@@ -6,18 +6,22 @@ import type { HttpStatusCode } from '@hello.nrfcloud.com/proto/hello'
 
 export const aResponse = (
 	status: HttpStatusCode,
-	result: {
+	result?: {
 		'@context': URL
 	} & Record<string, unknown>,
 	cacheForSeconds: number = 60,
 	headers?: APIGatewayProxyStructuredResultV2['headers'],
-): APIGatewayProxyResultV2 => ({
-	statusCode: status,
-	headers: {
-		'content-type': 'application/json',
-		'Cache-Control':
-			cacheForSeconds > 0 ? `public, max-age=${cacheForSeconds}` : 'no-store',
-		...(headers ?? {}),
-	},
-	body: JSON.stringify(result),
-})
+): APIGatewayProxyResultV2 => {
+	const body = result !== undefined ? JSON.stringify(result) : undefined
+	return {
+		statusCode: status,
+		headers: {
+			...(body !== undefined ? { 'content-type': 'application/json' } : {}),
+			'content-length': `${body?.length ?? 0}`,
+			'Cache-Control':
+				cacheForSeconds > 0 ? `public, max-age=${cacheForSeconds}` : 'no-store',
+			...(headers ?? {}),
+		},
+		body,
+	}
+}

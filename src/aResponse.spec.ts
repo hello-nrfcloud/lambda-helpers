@@ -17,6 +17,7 @@ void describe('aResponse()', () => {
 				statusCode: 200,
 				headers: {
 					'Cache-Control': `public, max-age=${60 * 10}`,
+					'content-length': '59',
 					'content-type': 'application/json',
 				},
 				body: JSON.stringify({
