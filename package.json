@@ -81,7 +81,7 @@
   ],
   "prettier": "@bifravst/prettier-config",
   "peerDependencies": {
-    "@aws-lambda-powertools/metrics": "^2.1.0",
+    "@aws-lambda-powertools/metrics": "^2.1.1",
     "@hello.nrfcloud.com/proto": "^9.0.9",
     "@middy/core": "^5.3.4"
   }
