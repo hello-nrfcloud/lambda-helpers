@@ -1,6 +1,6 @@
 import type { APIGatewayProxyResultV2 } from 'aws-lambda'
 import type { Static } from '@sinclair/typebox'
-import { Context, ProblemDetail } from '@hello.nrfcloud.com/proto/hello'
+import { Context, type ProblemDetail } from '@hello.nrfcloud.com/proto/hello'
 
 export const aProblem = (
 	problem: Omit<Static<typeof ProblemDetail>, '@context'>,
