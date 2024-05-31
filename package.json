@@ -36,7 +36,7 @@
     "@bifravst/prettier-config": "1.0.0",
     "@commitlint/config-conventional": "19.2.2",
     "@types/aws-lambda": "8.10.138",
-    "@types/node": "20.12.13",
+    "@types/node": "20.12.14",
     "husky": "9.0.11",
     "tsx": "4.11.0"
   },
@@ -82,7 +82,7 @@
   "prettier": "@bifravst/prettier-config",
   "peerDependencies": {
     "@aws-lambda-powertools/metrics": "^2.1.1",
-    "@hello.nrfcloud.com/proto": "^13.0.6",
+    "@hello.nrfcloud.com/proto": "^13.0.7",
     "@middy/core": "^5.3.5"
   }
 }
