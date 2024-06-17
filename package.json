@@ -38,7 +38,7 @@
     "@types/aws-lambda": "8.10.138",
     "@types/node": "20.14.2",
     "husky": "9.0.11",
-    "tsx": "4.15.5"
+    "tsx": "4.15.6"
   },
   "lint-staged": {
     "*.ts": [
@@ -82,7 +82,7 @@
   "prettier": "@bifravst/prettier-config",
   "peerDependencies": {
     "@aws-lambda-powertools/metrics": "^2.2.0",
-    "@hello.nrfcloud.com/proto": "^13.3.2",
+    "@hello.nrfcloud.com/proto": "^14.0.0",
     "@middy/core": "^5.4.0"
   }
 }
