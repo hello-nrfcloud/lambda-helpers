@@ -83,6 +83,6 @@
   "peerDependencies": {
     "@aws-lambda-powertools/metrics": "^2.2.0",
     "@hello.nrfcloud.com/proto": "^14.1.2",
-    "@middy/core": "^5.4.1"
+    "@middy/core": "^5.4.2"
   }
 }
