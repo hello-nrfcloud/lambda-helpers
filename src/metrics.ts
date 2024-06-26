@@ -22,7 +22,7 @@ export const metricsForComponent = (
 			serviceName: component,
 		})
 	}
-	const metrics = registry[component] as Metrics
+	const metrics = registry[component]
 	return {
 		metrics,
 		track: (...args) => {
