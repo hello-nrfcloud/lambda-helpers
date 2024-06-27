@@ -34,7 +34,7 @@ export const corsHeaders = (
 	'Access-Control-Allow-Origin': origin({ headers }),
 	'Access-Control-Allow-Methods': allowedMethods.join(', '),
 	'Access-Control-Allow-Headers': 'content-type, accept, if-match',
-	'Access-Control-Expose-Headers': 'x-amzn-requestid, etag',
+	'Access-Control-Expose-Headers': 'x-amzn-requestid, etag, apigw-requestid',
 	'Access-Control-Max-Age': cacheForSeconds,
 	// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin#cors_and_caching
 	Vary: 'Origin',
