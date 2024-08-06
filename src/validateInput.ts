@@ -10,8 +10,8 @@ import {
 	validateWithTypeBox,
 } from '@hello.nrfcloud.com/proto'
 import { HttpStatusCode } from '@hello.nrfcloud.com/proto/hello'
-import { tryAsJSON } from '../tryAsJSON.js'
-import { aProblem } from '../aProblem.js'
+import { tryAsJSON } from './tryAsJSON.js'
+import { aProblem } from './aProblem.js'
 
 export const validateInput = <Schema extends TSchema>(
 	schema: Schema,
