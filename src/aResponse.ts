@@ -1,5 +1,5 @@
-import type { APIGatewayProxyStructuredResultV2 } from 'aws-lambda'
 import type { HttpStatusCode } from '@hello.nrfcloud.com/proto/hello'
+import type { APIGatewayProxyStructuredResultV2 } from 'aws-lambda'
 
 export const aResponse = (
 	status: HttpStatusCode,

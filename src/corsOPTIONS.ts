@@ -1,8 +1,8 @@
+import type { MiddlewareObj, Request } from '@middy/core'
 import type {
 	APIGatewayProxyEventV2,
 	APIGatewayProxyStructuredResultV2,
 } from 'aws-lambda'
-import type { MiddlewareObj, Request } from '@middy/core'
 import { corsHeaders } from './corsHeaders.js'
 
 export const corsOPTIONS = (
