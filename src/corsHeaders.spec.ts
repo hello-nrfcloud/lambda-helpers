@@ -12,7 +12,8 @@ void describe('corsHeaders()', () => {
 			}),
 			{
 				'Access-Control-Allow-Credentials': true,
-				'Access-Control-Allow-Headers': 'content-type, accept, if-match',
+				'Access-Control-Allow-Headers':
+					'content-type, accept, if-match, authorization',
 				'Access-Control-Expose-Headers':
 					'x-amzn-requestid, etag, apigw-requestid',
 				'Access-Control-Allow-Methods': 'PUT, DELETE, POST, GET, PATCH',
