@@ -1,11 +1,11 @@
-import type { APIGatewayProxyResultV2 } from 'aws-lambda'
+import type { APIGatewayProxyStructuredResultV2 } from 'aws-lambda'
 import type { Static } from '@sinclair/typebox'
 import { Context, type ProblemDetail } from '@hello.nrfcloud.com/proto/hello'
 
 export const aProblem = (
 	problem: Omit<Static<typeof ProblemDetail>, '@context'>,
 	cacheForSeconds: number = 60,
-): APIGatewayProxyResultV2 => ({
+): APIGatewayProxyStructuredResultV2 => ({
 	statusCode: problem.status,
 	headers: {
 		'content-type': 'application/problem+json',

@@ -1,7 +1,4 @@
-import type {
-	APIGatewayProxyResultV2,
-	APIGatewayProxyStructuredResultV2,
-} from 'aws-lambda'
+import type { APIGatewayProxyStructuredResultV2 } from 'aws-lambda'
 import type { HttpStatusCode } from '@hello.nrfcloud.com/proto/hello'
 
 export const aResponse = (
@@ -11,7 +8,7 @@ export const aResponse = (
 	} & Record<string, unknown>,
 	cacheForSeconds: number = 60,
 	headers?: APIGatewayProxyStructuredResultV2['headers'],
-): APIGatewayProxyResultV2 => {
+): APIGatewayProxyStructuredResultV2 => {
 	const body = result !== undefined ? JSON.stringify(result) : undefined
 	return {
 		statusCode: status,

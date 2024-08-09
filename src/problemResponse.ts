@@ -33,22 +33,23 @@ export const problemResponse = (): MiddlewareObj<
 	LambdaContext
 > => ({
 	onError: async (req) => {
+		if (req.response !== undefined) return
 		if (req.error instanceof ValidationFailedError) {
-			return aProblem({
+			req.response = aProblem({
 				title: 'Validation failed',
 				status: HttpStatusCode.BAD_REQUEST,
 				detail: formatTypeBoxErrors(req.error.errors),
 			})
+		} else if (req.error instanceof ProblemDetailError) {
+			req.response = aProblem(req.error.problem)
+		} else {
+			req.response = aProblem({
+				title:
+					req.error instanceof Error
+						? req.error.message
+						: 'Internal Server Error',
+				status: HttpStatusCode.INTERNAL_SERVER_ERROR,
+			})
 		}
-		if (req.error instanceof ProblemDetailError) {
-			return aProblem(req.error.problem)
-		}
-		return aProblem({
-			title:
-				req.error instanceof Error
-					? req.error.message
-					: 'Internal Server Error',
-			status: HttpStatusCode.INTERNAL_SERVER_ERROR,
-		})
 	},
 })

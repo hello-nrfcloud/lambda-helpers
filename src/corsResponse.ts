@@ -1,12 +1,12 @@
 import type {
 	APIGatewayProxyEventHeaders,
-	APIGatewayProxyResultV2,
+	APIGatewayProxyStructuredResultV2,
 } from 'aws-lambda'
 import { corsHeaders } from './corsHeaders.js'
 
 export const corsResponse = (event: {
 	headers: APIGatewayProxyEventHeaders
-}): APIGatewayProxyResultV2 => ({
+}): APIGatewayProxyStructuredResultV2 => ({
 	statusCode: 200,
 	headers: corsHeaders(event),
 })
