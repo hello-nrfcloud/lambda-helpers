@@ -1,17 +1,22 @@
+import { validateWithTypeBox } from '@hello.nrfcloud.com/proto'
+import type { MiddlewareObj } from '@middy/core'
+import type { Static, TSchema } from '@sinclair/typebox'
+import type { ValueError } from '@sinclair/typebox/compiler'
 import type {
 	APIGatewayProxyEventV2,
 	APIGatewayProxyStructuredResultV2,
 	Context,
 } from 'aws-lambda'
-import type { MiddlewareObj } from '@middy/core'
-import type { Static, TSchema } from '@sinclair/typebox'
-import {
-	formatTypeBoxErrors,
-	validateWithTypeBox,
-} from '@hello.nrfcloud.com/proto'
-import { HttpStatusCode } from '@hello.nrfcloud.com/proto/hello'
 import { tryAsJSON } from './tryAsJSON.js'
-import { aProblem } from './aProblem.js'
+
+export class ValidationFailedError extends Error {
+	public readonly errors: ValueError[]
+	constructor(errors: ValueError[]) {
+		super('Validation failed')
+		this.errors = errors
+		this.name = 'ValidationFailedError'
+	}
+}
 
 export const validateInput = <Schema extends TSchema>(
 	schema: Schema,
@@ -47,11 +52,7 @@ export const validateInput = <Schema extends TSchema>(
 					`Input not valid`,
 					JSON.stringify(maybeValidInput.errors),
 				)
-				return aProblem({
-					title: 'Validation failed',
-					status: HttpStatusCode.BAD_REQUEST,
-					detail: formatTypeBoxErrors(maybeValidInput.errors),
-				})
+				throw new ValidationFailedError(maybeValidInput.errors)
 			}
 			console.debug(`[validateInput]`, `Input valid`)
 			req.context.validInput = maybeValidInput.value
