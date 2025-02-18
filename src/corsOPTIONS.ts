@@ -16,7 +16,7 @@ export const corsOPTIONS = (
 		req.response = {
 			...req.response,
 			headers: {
-				...req.response.headers,
+				...(req.response.headers ?? {}),
 				...corsHeaders(req.event, allowedMethods),
 			},
 		}

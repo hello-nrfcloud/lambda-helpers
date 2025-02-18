@@ -12,7 +12,7 @@ export const addVersionHeader = (
 		req.response = {
 			...req.response,
 			headers: {
-				...req.response.headers,
+				...(req.response.headers ?? {}),
 				'x-backend-version': version,
 			},
 		}
