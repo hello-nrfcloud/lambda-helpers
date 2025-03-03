@@ -57,10 +57,11 @@ export const validateInput = <Schema extends TSchema>(
 						input,
 						errors: formatTypeBoxErrors(maybeValidInput.errors),
 					}),
+					schema.title,
 				)
 				throw new ValidationFailedError(maybeValidInput.errors)
 			}
-			console.debug(`[validateInput]`, `Input valid`)
+			console.debug(`[validateInput]`, `Input is valid`, schema.title)
 			req.context.validInput = maybeValidInput.value
 			return undefined
 		},
