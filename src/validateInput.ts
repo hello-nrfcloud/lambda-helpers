@@ -1,4 +1,7 @@
-import { validateWithTypeBox } from '@hello.nrfcloud.com/proto'
+import {
+	formatTypeBoxErrors,
+	validateWithTypeBox,
+} from '@hello.nrfcloud.com/proto'
 import type { MiddlewareObj } from '@middy/core'
 import type { Static, TSchema } from '@sinclair/typebox'
 import type { ValueError } from '@sinclair/typebox/compiler'
@@ -11,8 +14,8 @@ import { tryAsJSON } from './tryAsJSON.js'
 
 export class ValidationFailedError extends Error {
 	public readonly errors: ValueError[]
-	constructor(errors: ValueError[]) {
-		super('Validation failed')
+	constructor(errors: ValueError[], message = 'Validation failed') {
+		super(message)
 		this.errors = errors
 		this.name = 'ValidationFailedError'
 	}
@@ -50,7 +53,10 @@ export const validateInput = <Schema extends TSchema>(
 				console.debug(
 					`[validateInput]`,
 					`Input not valid`,
-					JSON.stringify(maybeValidInput.errors),
+					JSON.stringify({
+						input,
+						errors: formatTypeBoxErrors(maybeValidInput.errors),
+					}),
 				)
 				throw new ValidationFailedError(maybeValidInput.errors)
 			}

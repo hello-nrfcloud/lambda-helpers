@@ -13,6 +13,7 @@ import type {
 } from 'aws-lambda'
 import { aProblem } from './aProblem.js'
 import { ValidationFailedError } from './validateInput.js'
+import { ResponseValidationFailedError } from './validateResponse.js'
 
 export class ProblemDetailError extends Error {
 	public readonly problem: Static<typeof ProblemDetail>
@@ -38,6 +39,12 @@ export const problemResponse = (): MiddlewareObj<
 			req.response = aProblem({
 				title: 'Validation failed',
 				status: HttpStatusCode.BAD_REQUEST,
+				detail: formatTypeBoxErrors(req.error.errors),
+			})
+		} else if (req.error instanceof ResponseValidationFailedError) {
+			req.response = aProblem({
+				title: 'Response validation failed',
+				status: HttpStatusCode.INTERNAL_SERVER_ERROR,
 				detail: formatTypeBoxErrors(req.error.errors),
 			})
 		} else if (req.error instanceof ProblemDetailError) {
