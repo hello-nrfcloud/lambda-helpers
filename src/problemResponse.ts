@@ -19,10 +19,7 @@ export class ProblemDetailError extends Error {
 	public readonly problem: Static<typeof ProblemDetail>
 	constructor(problem: Omit<Static<typeof ProblemDetail>, '@context'>) {
 		super(problem.title)
-		this.problem = {
-			'@context': Context.problemDetail.toString(),
-			...problem,
-		}
+		this.problem = { '@context': Context.problemDetail.toString(), ...problem }
 		this.name = 'ProblemDetailError'
 	}
 }
@@ -35,16 +32,16 @@ export const problemResponse = (): MiddlewareObj<
 > => ({
 	onError: async (req) => {
 		if (req.response !== undefined) return
-		if (req.error instanceof ValidationFailedError) {
-			req.response = aProblem({
-				title: 'Validation failed',
-				status: HttpStatusCode.BAD_REQUEST,
-				detail: formatTypeBoxErrors(req.error.errors),
-			})
-		} else if (req.error instanceof ResponseValidationFailedError) {
+		if (req.error instanceof ResponseValidationFailedError) {
 			req.response = aProblem({
 				title: 'Response validation failed',
 				status: HttpStatusCode.INTERNAL_SERVER_ERROR,
+				detail: formatTypeBoxErrors(req.error.errors),
+			})
+		} else if (req.error instanceof ValidationFailedError) {
+			req.response = aProblem({
+				title: 'Validation failed',
+				status: HttpStatusCode.BAD_REQUEST,
 				detail: formatTypeBoxErrors(req.error.errors),
 			})
 		} else if (req.error instanceof ProblemDetailError) {
