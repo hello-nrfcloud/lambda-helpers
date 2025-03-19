@@ -1,11 +1,9 @@
 import { formatTypeBoxErrors } from '@hello.nrfcloud.com/proto'
 import {
-	Context,
 	HttpStatusCode,
-	type ProblemDetail,
+	ProblemDetailError,
 } from '@hello.nrfcloud.com/proto/hello'
 import type { MiddlewareObj } from '@middy/core'
-import type { Static } from '@sinclair/typebox'
 import type {
 	APIGatewayProxyEventV2,
 	APIGatewayProxyStructuredResultV2,
@@ -14,15 +12,6 @@ import type {
 import { aProblem } from './aProblem.js'
 import { ValidationFailedError } from './validateInput.js'
 import { ResponseValidationFailedError } from './validateResponse.js'
-
-export class ProblemDetailError extends Error {
-	public readonly problem: Static<typeof ProblemDetail>
-	constructor(problem: Omit<Static<typeof ProblemDetail>, '@context'>) {
-		super(problem.title)
-		this.problem = { '@context': Context.problemDetail.toString(), ...problem }
-		this.name = 'ProblemDetailError'
-	}
-}
 
 export const problemResponse = (): MiddlewareObj<
 	APIGatewayProxyEventV2,
