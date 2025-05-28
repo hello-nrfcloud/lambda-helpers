@@ -5,6 +5,7 @@ import {
 import type middy from '@middy/core'
 import type { TSchema } from '@sinclair/typebox'
 import type { ValueError } from '@sinclair/typebox/errors'
+import { parseHeaders } from './parseHeaders.js'
 import { tryAsJSON } from './tryAsJSON.js'
 import { ValidationFailedError } from './validateInput.js'
 
@@ -25,13 +26,13 @@ export const validateResponse = <ResponseSchema extends TSchema>(
 	return {
 		after: async (req) => {
 			const body = req.response?.body
+			const headers = parseHeaders(req.response.headers)
+			const contentType = headers.get('content-type') ?? ''
+
 			if ((body?.length ?? 0) === 0) {
 				console.debug(`[validateResponse]`, `Response body is empty`)
 			}
-			if (
-				(req.response.headers['content-type']?.includes('application/json') ??
-					false) === false
-			) {
+			if ((contentType?.includes('application/json') ?? false) === false) {
 				console.debug(`[validateResponse]`, `Response body is not JSON`)
 			}
 			const maybeValid = validator(tryAsJSON(req.response.body))

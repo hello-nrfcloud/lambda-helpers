@@ -1,4 +1,5 @@
 import type { APIGatewayProxyEventHeaders } from 'aws-lambda'
+import { parseHeaders } from './parseHeaders.js'
 
 const allowedDomains = [
 	/^https?:\/\/localhost:/,
@@ -6,7 +7,8 @@ const allowedDomains = [
 ]
 const defaultOrigin = 'https://hello.nrfcloud.com'
 const origin = (event: { headers: APIGatewayProxyEventHeaders }): string => {
-	const origin = event.headers.origin ?? defaultOrigin.toString()
+	const origin =
+		parseHeaders(event.headers).get('origin') ?? defaultOrigin.toString()
 
 	if (allowedDomains.find((rx) => rx.test(origin)) !== undefined) return origin
 

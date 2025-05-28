@@ -10,6 +10,7 @@ import type {
 	APIGatewayProxyStructuredResultV2,
 	Context,
 } from 'aws-lambda'
+import { parseHeaders } from './parseHeaders.js'
 import { tryAsJSON } from './tryAsJSON.js'
 
 export class ValidationFailedError extends Error {
@@ -34,12 +35,10 @@ export const validateInput = <Schema extends TSchema>(
 	return {
 		before: async (req) => {
 			let reqBody = {}
-			if (
-				(req.event.headers?.['content-type'] ?? '').includes(
-					'application/json',
-				) &&
-				parseInt(req.event.headers?.['content-length'] ?? '0', 10) > 0
-			) {
+			const headers = parseHeaders(req.event.headers)
+			const contentType = headers.get('content-type') ?? ''
+			const contentLength = parseInt(headers.get('content-length') ?? '0', 10)
+			if (contentType.includes('application/json') && contentLength > 0) {
 				reqBody = tryAsJSON(req.event.body) ?? {}
 			}
 			const input = mapInput?.(req.event) ?? {
