@@ -21,4 +21,7 @@ void describe('parseHeaders()', () => {
 			]),
 		)
 	})
+
+	void it('should handle null values in headers', () =>
+		assert.deepEqual(parseHeaders(null), new Map()))
 })
