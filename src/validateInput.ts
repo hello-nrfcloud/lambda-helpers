@@ -37,8 +37,10 @@ export const validateInput = <Schema extends TSchema>(
 			let reqBody = {}
 			const headers = parseHeaders(req.event.headers)
 			const contentType = headers.get('content-type') ?? ''
-			const contentLength = parseInt(headers.get('content-length') ?? '0', 10)
-			if (contentType.includes('application/json') && contentLength > 0) {
+			if (
+				contentType.includes('application/json') &&
+				(req.event.body?.length ?? 0) >= 2 // should be at least '{}'
+			) {
 				reqBody = tryAsJSON(req.event.body) ?? {}
 			}
 			const input = mapInput?.(req.event) ?? {
