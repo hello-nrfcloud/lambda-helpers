@@ -13,7 +13,7 @@ void describe('parseHeaders()', () => {
 		const parsedHeaders = parseHeaders(headers)
 
 		assert.deepEqual(
-			parsedHeaders,
+			new Map(parsedHeaders.entries()),
 			new Map([
 				['content-type', 'application/json'],
 				['content-length', '1234'],
@@ -24,4 +24,12 @@ void describe('parseHeaders()', () => {
 
 	void it('should handle null values in headers', () =>
 		assert.deepEqual(parseHeaders(null), new Map()))
+
+	void it('should make header keys case-insensitive', () => {
+		const headers = {
+			'x-custom-header': 'value',
+		}
+		const parsedHeaders = parseHeaders(headers)
+		assert.equal(parsedHeaders.get('X-Custom-HEADER'), 'value')
+	})
 })
