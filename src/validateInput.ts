@@ -3,8 +3,9 @@ import {
 	validateWithTypeBox,
 } from '@hello.nrfcloud.com/proto'
 import type { MiddlewareObj } from '@middy/core'
-import type { Static, TSchema } from '@sinclair/typebox'
+import type { Static, StaticDecode, TSchema } from '@sinclair/typebox'
 import type { ValueError } from '@sinclair/typebox/compiler'
+import { Value } from '@sinclair/typebox/value'
 import type {
 	APIGatewayProxyEventV2,
 	APIGatewayProxyStructuredResultV2,
@@ -64,11 +65,18 @@ export const validateInput = <Schema extends TSchema>(
 			}
 			console.debug(`[validateInput]`, `Input is valid`, schema.title)
 			req.context.validInput = maybeValidInput.value
+			req.context.decodedInput = Value.Decode(schema, maybeValidInput.value)
 			return undefined
 		},
 	}
 }
 
 export type ValidInput<Schema extends TSchema> = {
+	/**
+	 * @deprecated Use `decodedInput` instead
+	 *
+	 * This will be removed in the next major version.
+	 */
 	validInput: Static<Schema>
+	decodedInput: StaticDecode<Schema>
 }
