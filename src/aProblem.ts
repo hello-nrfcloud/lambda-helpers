@@ -4,12 +4,13 @@ import type { APIGatewayProxyStructuredResultV2 } from 'aws-lambda'
 
 export const aProblem = (
 	problem: Omit<Static<typeof ProblemDetail>, '@context'>,
-	cacheForSeconds: number = 60,
+	cacheForSeconds: number = 0,
 ): APIGatewayProxyStructuredResultV2 => ({
 	statusCode: problem.status,
 	headers: {
 		'content-type': 'application/problem+json',
-		'Cache-Control': `public, max-age=${cacheForSeconds}`,
+		'Cache-Control':
+			cacheForSeconds > 0 ? `public, max-age=${cacheForSeconds}` : 'no-store',
 	},
 	body: JSON.stringify({
 		'@context': Context.problemDetail.toString(),

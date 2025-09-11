@@ -14,13 +14,30 @@ void describe('aProblem()', () => {
 				statusCode: 409,
 				headers: {
 					'content-type': 'application/problem+json',
-					'Cache-Control': 'public, max-age=60',
+					// 'Cache-Control': 'public, max-age=60',
+					'Cache-Control': 'no-store',
 				},
 				body: JSON.stringify({
 					'@context': Context.problemDetail.toString(),
 					title: `A Conflict!`,
 					status: 409,
 				}),
+			},
+		))
+
+	void it('can set cache control', () =>
+		assert.partialDeepStrictEqual(
+			aProblem(
+				{
+					title: `A Conflict!`,
+					status: 409,
+				},
+				60,
+			),
+			{
+				headers: {
+					'Cache-Control': 'public, max-age=60',
+				},
 			},
 		))
 })
