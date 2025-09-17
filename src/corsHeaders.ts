@@ -35,8 +35,12 @@ export const corsHeaders = (
 	'Access-Control-Allow-Credentials': true,
 	'Access-Control-Allow-Origin': origin({ headers }),
 	'Access-Control-Allow-Methods': allowedMethods.join(', '),
-	'Access-Control-Allow-Headers':
-		'content-type, accept, if-match, authorization',
+	'Access-Control-Allow-Headers': Array.from(
+		new Set(['content-type', 'accept', 'if-match', 'authorization', 'origin']),
+	)
+		.map((h) => h.trim())
+		.sort((h1, h2) => h1.localeCompare(h2))
+		.join(', '),
 	'Access-Control-Expose-Headers': 'x-amzn-requestid, etag, apigw-requestid',
 	'Access-Control-Max-Age': cacheForSeconds,
 	// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin#cors_and_caching
