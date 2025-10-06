@@ -11,7 +11,6 @@ void describe('corsHeaders()', () => {
 				},
 			}),
 			{
-				'Access-Control-Allow-Credentials': true,
 				'Access-Control-Allow-Headers':
 					'accept, authorization, content-type, if-match, origin',
 				'Access-Control-Expose-Headers':

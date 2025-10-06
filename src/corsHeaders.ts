@@ -24,7 +24,6 @@ export const corsHeaders = (
 	allowedMethods = ['PUT', 'DELETE', 'POST', 'GET', 'PATCH'],
 	cacheForSeconds = 600,
 ): {
-	'Access-Control-Allow-Credentials': true
 	'Access-Control-Allow-Headers': string
 	'Access-Control-Expose-Headers': string
 	'Access-Control-Allow-Methods': string
@@ -32,7 +31,6 @@ export const corsHeaders = (
 	'Access-Control-Max-Age': number
 	Vary: 'Origin'
 } => ({
-	'Access-Control-Allow-Credentials': true,
 	'Access-Control-Allow-Origin': origin({ headers }),
 	'Access-Control-Allow-Methods': allowedMethods.join(', '),
 	'Access-Control-Allow-Headers': Array.from(
