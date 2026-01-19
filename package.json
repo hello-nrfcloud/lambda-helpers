@@ -5,8 +5,8 @@
   "exports": {
     "./*": {
       "import": {
-        "types": "./npm/src/*.d.ts",
-        "default": "./npm/src/*.js"
+        "types": "./npm/*.d.ts",
+        "default": "./npm/*.js"
       }
     }
   },
@@ -14,7 +14,7 @@
   "scripts": {
     "test": "tsx --no-warnings --test ./src/*.spec.ts",
     "prepare": "husky",
-    "prepublishOnly": "node --experimental-strip-types ./.npm/compile.ts && npx tsc -P ./.npm/tsconfig.npm.json --outDir ./npm"
+    "prepublishOnly": "node --experimental-strip-types ./.npm/compile.ts && npx tsc -P ./.npm/tsconfig.npm.json --outDir ./npm && mv ./npm/src/* ./npm"
   },
   "repository": {
     "type": "git",
