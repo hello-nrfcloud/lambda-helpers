@@ -5,8 +5,8 @@
   "exports": {
     "./*": {
       "import": {
-        "types": "./dist/*.d.ts",
-        "default": "./dist/*.js"
+        "types": "./npm/src/*.d.ts",
+        "default": "./npm/src/*.js"
       }
     }
   },
@@ -14,7 +14,7 @@
   "scripts": {
     "test": "tsx --no-warnings --test ./src/*.spec.ts",
     "prepare": "husky",
-    "prepublishOnly": "npx tsc --noEmit false --outDir ./dist -d"
+    "prepublishOnly": "node --experimental-strip-types ./.npm/compile.ts && npx tsc -P ./.npm/tsconfig.npm.json --outDir ./npm"
   },
   "repository": {
     "type": "git",
@@ -35,8 +35,10 @@
     "@bifravst/eslint-config-typescript": "6.4.4",
     "@bifravst/prettier-config": "1.1.17",
     "@commitlint/config-conventional": "20.3.1",
+    "@swc/core": "1.15.8",
     "@types/aws-lambda": "8.10.159",
     "@types/node": "25.0.9",
+    "@typescript/native-preview": "7.0.0-dev.20260119.1",
     "commitlint": "20.3.1",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
@@ -84,6 +86,7 @@
   "prettier": "@bifravst/prettier-config",
   "peerDependencies": {
     "@aws-lambda-powertools/metrics": "^2.30.2",
+    "@aws/durable-execution-sdk-js": "^1.0.1",
     "@hello.nrfcloud.com/proto": "^15.4.93",
     "@middy/core": "^7.0.2",
     "@middy/input-output-logger": "^7.0.2"
