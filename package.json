@@ -79,7 +79,7 @@
     "access": "public"
   },
   "files": [
-    "dist",
+    "npm",
     "LICENSE",
     "README.md"
   ],
