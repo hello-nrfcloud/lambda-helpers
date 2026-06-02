@@ -88,7 +88,7 @@
     "@aws-lambda-powertools/metrics": "^2.33.1",
     "@aws/durable-execution-sdk-js": "^1.1.7",
     "@hello.nrfcloud.com/proto": "^15.4.93",
-    "@middy/core": "^7.1.2",
-    "@middy/input-output-logger": "^7.1.2"
+    "@middy/core": "^7.6.5",
+    "@middy/input-output-logger": "^7.6.5"
   }
 }
