@@ -12,3 +12,13 @@ Helper functions for AWS lambdas written in TypeScript.
 ## Installation
 
     npm i --save --save-exact @hello.nrfcloud.com/lambda-helpers
+
+## Node & NPM
+
+This project requires Node.js `>=22` and npm `>=12.0.2 <13` (enforced via
+`check-node-version` on `npm install` and `npm ci`).
+
+The check is skipped during `npm publish` and `npm pack`, because
+`semantic-release` bundles its own npm (`@semantic-release/npm` depends on
+`npm@^11.6.2`) and runs the publish with that version rather than the one
+installed in CI.
