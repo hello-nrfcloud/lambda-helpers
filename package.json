@@ -80,6 +80,7 @@
     "access": "public"
   },
   "files": [
+    "src",
     "npm",
     "LICENSE",
     "README.md"
