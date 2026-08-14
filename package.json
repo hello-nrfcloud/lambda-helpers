@@ -32,17 +32,17 @@
   "author": "Nordic Semiconductor ASA | nordicsemi.no",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "@bifravst/eslint-config-typescript": "6.4.4",
+    "@bifravst/eslint-config-typescript": "7.0.34",
     "@bifravst/prettier-config": "1.1.17",
-    "@commitlint/config-conventional": "20.5.3",
-    "@swc/core": "1.15.33",
+    "@commitlint/config-conventional": "21.2.2",
+    "@swc/core": "1.15.47",
     "@types/aws-lambda": "8.10.162",
-    "@types/node": "25.9.5",
+    "@types/node": "26.2.0",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
     "check-node-version": "4.2.1",
-    "commitlint": "20.5.3",
+    "commitlint": "21.2.2",
     "husky": "9.1.7",
-    "lint-staged": "16.4.0",
+    "lint-staged": "17.3.0",
     "tsx": "4.23.12"
   },
   "lint-staged": {
@@ -55,7 +55,7 @@
     ]
   },
   "engines": {
-    "node": ">=22",
+    "node": ">=24.19.0 <25",
     "npm": ">=12.0.2 <13"
   },
   "release": {
@@ -86,10 +86,10 @@
   ],
   "prettier": "@bifravst/prettier-config",
   "peerDependencies": {
-    "@aws-lambda-powertools/metrics": "^2.33.1",
-    "@aws/durable-execution-sdk-js": "^1.1.7",
-    "@hello.nrfcloud.com/proto": "^15.4.93",
-    "@middy/core": "^7.1.2",
-    "@middy/input-output-logger": "^7.1.2"
+    "@aws-lambda-powertools/metrics": "^2.34.0",
+    "@aws/durable-execution-sdk-js": "^2.3.0",
+    "@hello.nrfcloud.com/proto": "^16.0.0",
+    "@middy/core": "^7.7.3",
+    "@middy/input-output-logger": "^7.7.3"
   }
 }
