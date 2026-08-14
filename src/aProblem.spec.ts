@@ -1,7 +1,7 @@
 import { Context } from '@hello.nrfcloud.com/proto/hello'
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
-import { aProblem } from './aProblem.js'
+import { aProblem } from './aProblem.ts'
 
 void describe('aProblem()', () => {
 	void it('should return a problem response', () =>

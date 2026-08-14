@@ -3,12 +3,14 @@ import type {
 	APIGatewayProxyEventV2,
 	APIGatewayProxyStructuredResultV2,
 } from 'aws-lambda'
-import { corsHeaders } from './corsHeaders.js'
+import { corsHeaders } from './corsHeaders.ts'
 
 export const corsOPTIONS = (
 	...allowedMethods: string[]
 ): MiddlewareObj<APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2> => {
-	const setCorsHeaders = async (req: Request) => {
+	const setCorsHeaders = async (
+		req: Request<APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2>,
+	) => {
 		if (req.response === null) {
 			console.error(`[corsOPTIONS]`, `Response is null`)
 			return
@@ -16,7 +18,7 @@ export const corsOPTIONS = (
 		req.response = {
 			...req.response,
 			headers: {
-				...(req.response.headers ?? {}),
+				...(req.response?.headers ?? {}),
 				...corsHeaders(req.event, allowedMethods),
 			},
 		}

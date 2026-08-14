@@ -11,8 +11,8 @@ import type {
 	APIGatewayProxyStructuredResultV2,
 	Context,
 } from 'aws-lambda'
-import { parseHeaders } from './parseHeaders.js'
-import { tryAsJSON } from './tryAsJSON.js'
+import { parseHeaders } from './parseHeaders.ts'
+import { tryAsJSON } from './tryAsJSON.ts'
 
 export class ValidationFailedError extends Error {
 	public readonly errors: ValueError[]

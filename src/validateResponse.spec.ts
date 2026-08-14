@@ -4,11 +4,11 @@ import { Type } from '@sinclair/typebox'
 import type { Context } from 'aws-lambda'
 import assert from 'node:assert'
 import { describe, it } from 'node:test'
-import { aResponse } from './aResponse.js'
+import { aResponse } from './aResponse.ts'
 import {
 	ResponseValidationFailedError,
 	validateResponse,
-} from './validateResponse.js'
+} from './validateResponse.ts'
 
 void describe('validateResponse()', () => {
 	void it('should validate the response', async () =>

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { describe, test as it } from 'node:test'
-import { tryAsJSON } from './tryAsJSON.js'
+import { tryAsJSON } from './tryAsJSON.ts'
 
 void describe('tryAsJSON()', () => {
 	void it('should return parsed JSON object if input is a valid JSON string', () => {

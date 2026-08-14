@@ -1,6 +1,6 @@
 import assert from 'assert'
 import { describe, it } from 'node:test'
-import { parseHeaders } from './parseHeaders.js'
+import { parseHeaders } from './parseHeaders.ts'
 
 void describe('parseHeaders()', () => {
 	void it('should parse both lowercase and uppercase headers', () => {

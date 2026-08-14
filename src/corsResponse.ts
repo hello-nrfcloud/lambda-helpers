@@ -2,7 +2,7 @@ import type {
 	APIGatewayProxyEventHeaders,
 	APIGatewayProxyStructuredResultV2,
 } from 'aws-lambda'
-import { corsHeaders } from './corsHeaders.js'
+import { corsHeaders } from './corsHeaders.ts'
 
 export const corsResponse = (event: {
 	headers: APIGatewayProxyEventHeaders

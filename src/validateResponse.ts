@@ -5,9 +5,9 @@ import {
 import type middy from '@middy/core'
 import type { TSchema } from '@sinclair/typebox'
 import type { ValueError } from '@sinclair/typebox/errors'
-import { parseHeaders } from './parseHeaders.js'
-import { tryAsJSON } from './tryAsJSON.js'
-import { ValidationFailedError } from './validateInput.js'
+import { parseHeaders } from './parseHeaders.ts'
+import { tryAsJSON } from './tryAsJSON.ts'
+import { ValidationFailedError } from './validateInput.ts'
 
 export class ResponseValidationFailedError extends ValidationFailedError {
 	constructor(errors: ValueError[]) {

@@ -9,9 +9,9 @@ import type {
 	APIGatewayProxyStructuredResultV2,
 	Context as LambdaContext,
 } from 'aws-lambda'
-import { aProblem } from './aProblem.js'
-import { ValidationFailedError } from './validateInput.js'
-import { ResponseValidationFailedError } from './validateResponse.js'
+import { aProblem } from './aProblem.ts'
+import { ValidationFailedError } from './validateInput.ts'
+import { ResponseValidationFailedError } from './validateResponse.ts'
 
 export const problemResponse = (): MiddlewareObj<
 	APIGatewayProxyEventV2,

@@ -1,5 +1,5 @@
 import type { APIGatewayProxyEventHeaders } from 'aws-lambda'
-import { parseHeaders } from './parseHeaders.js'
+import { parseHeaders } from './parseHeaders.ts'
 
 const allowedDomains = [
 	/^https?:\/\/localhost:/,

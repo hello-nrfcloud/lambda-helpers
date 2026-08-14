@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
-import { aResponse } from './aResponse.js'
+import { aResponse } from './aResponse.ts'
 
 void describe('aResponse()', () => {
 	void it('should return a response', () =>
