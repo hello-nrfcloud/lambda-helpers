@@ -12,7 +12,7 @@
   },
   "type": "module",
   "scripts": {
-    "test": "node --no-warnings --experimental-transform-types --test ./src/*.spec.ts",
+    "test": "node --no-warnings --test ./src/*.spec.ts",
     "prepare": "husky && case \"$npm_command\" in install|ci) check-node-version --package ;; esac",
     "prepublishOnly": "node --experimental-strip-types ./.npm/compile.ts"
   },
